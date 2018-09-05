@@ -11,7 +11,7 @@ import { SketchData, SketchService } from './sketch.service';
       <sketch-dropzone (changed)="onFileSelected($event)"></sketch-dropzone>
     </ng-template>
 
-    <div class="layers-container" *ngIf="data else noDataRef" >
+    <div class="layers-container" *ngIf="data else noDataRef" [class.no-scroll]="!data" >
       <sketch-canvas #ref sketchSelectedLayer (click)="clearSelection()" [currentPage]="currentPage" [data]="data"></sketch-canvas>
     </div>
   `,
@@ -34,7 +34,10 @@ import { SketchData, SketchService } from './sketch.service';
     height: 100%;
     min-height: 100%;
     position: absolute;
-    overflow: scroll;
+  }
+  
+  .no-scroll {
+    overflow: hidden;
   }
 
   sketch-layer {
